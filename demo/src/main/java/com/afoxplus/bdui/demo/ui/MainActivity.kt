@@ -1,4 +1,4 @@
-package com.afoxplus.module.demo.ui
+package com.afoxplus.bdui.demo.ui
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
