@@ -2,16 +2,19 @@ package com.afoxplus.bdui.delivery.screens
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.afoxplus.bdui.delivery.components.BDUIFactoryComponent
 import com.afoxplus.bdui.delivery.viewmodels.EstablishmentDetailViewModel
 import com.afoxplus.bdui.domain.entities.Component
 import com.afoxplus.uikit.common.UIState
-import com.afoxplus.uikit.designsystem.atoms.UIKitText
 
 @Composable
 private fun EstablishmentDetail(
@@ -38,9 +41,11 @@ private fun HandleEstablishmentDetailLoading() {
 
 @Composable
 private fun HandleEstablishmentDetail(modifier: Modifier = Modifier, components: List<Component>) {
-    Column(modifier = modifier.fillMaxSize()) {
-        components.forEach { item ->
-            UIKitText(text = item.name)
+    Scaffold(modifier = modifier) { paddingValues ->
+        LazyColumn(modifier = Modifier.padding(paddingValues)) {
+            items(components.size) {
+                BDUIFactoryComponent(components[it])
+            }
         }
     }
 }

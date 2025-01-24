@@ -24,5 +24,22 @@ internal data class ComponentResponse(
     //Icon
     @SerializedName("iconToken") val iconToken: String? = null,
     @SerializedName("size") val size: String? = null,
-    @SerializedName("hintToken") val hintToken: String? = null
+    @SerializedName("hintToken") val hintToken: String? = null,
+
+    //Button
+    @SerializedName("style") val style: String? = null,
+    @SerializedName("borderStroke") val borderStroke: BorderStrokeResponse? = null,
+    @SerializedName("shape") val shape: String? = null,
+    @SerializedName("contentPadding") val paddingValues: PaddingValuesResponse? = null,
+    @SerializedName("state") val state: String? = null
+)
+
+internal data class BorderStrokeResponse(
+    @SerializedName("with") val with: String? = null,
+    @SerializedName("color") val color: String? = null
+)
+
+internal data class PaddingValuesResponse(
+    @SerializedName("vertical") val vertical: String? = null,
+    @SerializedName("horizontal") val horizontal: String? = null
 )

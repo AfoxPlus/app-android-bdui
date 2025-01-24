@@ -1,6 +1,8 @@
 package com.afoxplus.bdui.cross.mapper
 
 import com.afoxplus.bdui.data.sources.remote.model.response.ComponentResponse
+import com.afoxplus.bdui.domain.entities.BorderStroke
+import com.afoxplus.bdui.domain.entities.ButtonComponent
 import com.afoxplus.bdui.domain.entities.CardComponent
 import com.afoxplus.bdui.domain.entities.Component
 import com.afoxplus.bdui.domain.entities.ComponentGridType
@@ -8,6 +10,32 @@ import com.afoxplus.bdui.domain.entities.ComponentType
 import com.afoxplus.bdui.domain.entities.EmptyComponent
 import com.afoxplus.bdui.domain.entities.GridComponent
 import com.afoxplus.bdui.domain.entities.IconComponent
+import com.afoxplus.bdui.domain.entities.PaddingValues
+
+internal fun ComponentResponse.toButtonComponent(): ButtonComponent {
+    return ButtonComponent(
+        style = this.style.orEmpty(),
+        borderStroke = BorderStroke(
+            with = this.borderStroke?.with,
+            color = this.borderStroke?.color
+        ),
+        shape = this.shape,
+        paddingValues = PaddingValues(
+            horizontal = this.paddingValues?.horizontal,
+            vertical = this.paddingValues?.vertical
+        ),
+        state = this.state,
+        type = ComponentType.BUTTON,
+        name = this.name,
+        spacingHorizontal = this.spacingHorizontal,
+        spacingVertical = this.spacingVertical,
+        backgroundToken = this.backgroundToken,
+        colorToken = this.colorToken,
+        typographyToken = this.typographyToken,
+        content = this.content,
+        children = this.children?.map { it.toComponent() }
+    )
+}
 
 internal fun ComponentResponse.toIconComponent(): IconComponent {
     return IconComponent(
@@ -66,6 +94,7 @@ internal fun ComponentResponse.toComponent(): Component {
         ComponentType.ICON.name -> this.toIconComponent()
         ComponentType.GRID.name -> this.toGridComponent()
         ComponentType.CARD.name -> this.toCardComponent()
+        ComponentType.BUTTON.name -> this.toButtonComponent()
         else -> EmptyComponent(
             name = this.name,
             type = ComponentType.EMPTY,

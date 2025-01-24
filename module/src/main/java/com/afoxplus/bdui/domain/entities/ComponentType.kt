@@ -4,5 +4,6 @@ enum class ComponentType {
     ICON,
     GRID,
     CARD,
+    BUTTON,
     EMPTY
 }
