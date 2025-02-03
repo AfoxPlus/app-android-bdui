@@ -1,6 +1,5 @@
 package com.afoxplus.bdui.delivery.screens
 
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -11,9 +10,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.afoxplus.bdui.delivery.components.BDUIFactoryComponent
+import com.afoxplus.bdui.delivery.factories.BDUIFactoryBar
+import com.afoxplus.bdui.delivery.factories.BDUIFactoryEstablishmentDetail
 import com.afoxplus.bdui.delivery.viewmodels.EstablishmentDetailViewModel
-import com.afoxplus.bdui.domain.entities.Component
+import com.afoxplus.bdui.domain.entities.Screen
 import com.afoxplus.uikit.common.UIState
 
 @Composable
@@ -28,7 +28,7 @@ private fun EstablishmentDetail(
         is UIState.OnLoading -> HandleEstablishmentDetailLoading()
         is UIState.OnSuccess -> HandleEstablishmentDetail(
             modifier,
-            (componentsState as UIState.OnSuccess<List<Component>>).data
+            (componentsState as UIState.OnSuccess<Screen>).data
         )
     }
     LaunchedEffect(Unit) { viewModel.callGetEstablishmentDetail(establishmentCode) }
@@ -40,15 +40,30 @@ private fun HandleEstablishmentDetailLoading() {
 }
 
 @Composable
-private fun HandleEstablishmentDetail(modifier: Modifier = Modifier, components: List<Component>) {
-    Scaffold(modifier = modifier) { paddingValues ->
-        LazyColumn(modifier = Modifier.padding(paddingValues)) {
-            items(components.size) {
-                BDUIFactoryComponent(components[it])
+private fun HandleEstablishmentDetail(
+    modifier: Modifier = Modifier,
+    screen: Screen
+) {
+    Scaffold(
+        modifier = modifier,
+        topBar = { screen.topBar?.let { BDUIFactoryBar(it) } },
+        bottomBar = { screen.bottomBar?.let { BDUIFactoryBar(it) } }
+    ) { paddingValues ->
+        LazyColumn(
+            modifier = Modifier
+                .padding(paddingValues)
+                .fillMaxSize()
+        ) {
+            items(
+                count = screen.content.size,
+                key = { screen.content[it].id }
+            ) {
+                BDUIFactoryEstablishmentDetail(screen.content[it])
             }
         }
     }
 }
+
 
 @Composable
 private fun HandleEstablishmentDetailError() {

@@ -11,6 +11,26 @@ import com.afoxplus.bdui.domain.entities.EmptyComponent
 import com.afoxplus.bdui.domain.entities.GridComponent
 import com.afoxplus.bdui.domain.entities.IconComponent
 import com.afoxplus.bdui.domain.entities.PaddingValues
+import com.afoxplus.bdui.domain.entities.TextComponent
+
+
+internal fun ComponentResponse.toTextComponent(): TextComponent {
+    return TextComponent(
+        colorExpandableText = this.colorExpandableText,
+        typographyTokenExpandableText = this.typographyTokenExpandableText,
+        maxLines = this.maxLines,
+        textAlign = this.textAlign,
+        type = ComponentType.TEXT,
+        id = this.id,
+        name = this.name,
+        spacingHorizontal = this.spacingHorizontal,
+        spacingVertical = this.spacingVertical,
+        backgroundToken = this.backgroundToken,
+        colorToken = this.colorToken,
+        typographyToken = this.typographyToken,
+        content = this.content
+    )
+}
 
 internal fun ComponentResponse.toButtonComponent(): ButtonComponent {
     return ButtonComponent(
@@ -26,6 +46,7 @@ internal fun ComponentResponse.toButtonComponent(): ButtonComponent {
         ),
         state = this.state,
         type = ComponentType.BUTTON,
+        id = this.id,
         name = this.name,
         spacingHorizontal = this.spacingHorizontal,
         spacingVertical = this.spacingVertical,
@@ -39,6 +60,7 @@ internal fun ComponentResponse.toButtonComponent(): ButtonComponent {
 
 internal fun ComponentResponse.toIconComponent(): IconComponent {
     return IconComponent(
+        id = this.id,
         name = this.name,
         iconToken = this.iconToken ?: "",
         size = this.size ?: "",
@@ -60,6 +82,7 @@ internal fun ComponentResponse.toCardComponent(): CardComponent {
         border = this.border ?: "",
         stroke = this.stroke ?: "",
         type = ComponentType.CARD,
+        id = this.id,
         name = this.name,
         spacingHorizontal = this.spacingHorizontal,
         spacingVertical = this.spacingVertical,
@@ -77,6 +100,7 @@ internal fun ComponentResponse.toGridComponent(): GridComponent {
         gridType = this.gridType?.let { ComponentGridType.valueOf(it) } ?: ComponentGridType.COLUMN,
         gridSize = this.gridSize ?: 1,
         items = this.items?.map { item -> item.toCardComponent() } ?: emptyList(),
+        id = this.id,
         name = this.name,
         type = ComponentType.GRID,
         spacingHorizontal = this.spacingHorizontal,
@@ -95,7 +119,9 @@ internal fun ComponentResponse.toComponent(): Component {
         ComponentType.GRID.name -> this.toGridComponent()
         ComponentType.CARD.name -> this.toCardComponent()
         ComponentType.BUTTON.name -> this.toButtonComponent()
+        ComponentType.TEXT.name -> this.toTextComponent()
         else -> EmptyComponent(
+            id = this.id,
             name = this.name,
             type = ComponentType.EMPTY,
             spacingHorizontal = this.spacingHorizontal,

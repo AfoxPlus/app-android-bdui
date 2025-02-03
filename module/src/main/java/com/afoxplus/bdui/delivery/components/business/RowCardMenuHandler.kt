@@ -1,4 +1,4 @@
-package com.afoxplus.bdui.delivery.components
+package com.afoxplus.bdui.delivery.components.business
 
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
@@ -11,36 +11,30 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import com.afoxplus.bdui.cross.extensions.toProductModel
+import com.afoxplus.bdui.cross.extensions.getSpacingBetweenComponents
+import com.afoxplus.bdui.cross.extensions.getSpacingHorizontal
+import com.afoxplus.bdui.cross.extensions.getSpacingVertical
+import com.afoxplus.bdui.cross.extensions.toModel
+import com.afoxplus.bdui.delivery.models.ProductModel
 import com.afoxplus.bdui.domain.entities.GridComponent
 import com.afoxplus.uikit.designsystem.businesscomponents.UIKitProductItem
-import com.afoxplus.uikit.designsystem.extensions.getUIKitSpacing
-import com.afoxplus.uikit.designsystem.foundations.UIKitTheme
 
 @Composable
-fun BDUIRowCardMenu(modifier: Modifier = Modifier, gridComponent: GridComponent) {
-    val spacingHorizontal =
-        gridComponent.spacingHorizontal?.let { getUIKitSpacing(it) } ?: UIKitTheme.spacing.spacing12
-    val spacingVertical =
-        gridComponent.spacingVertical?.let { getUIKitSpacing(it) } ?: UIKitTheme.spacing.spacing12
-    val spacingBetweenComponents =
-        gridComponent.spacingBetweenComponents?.let { getUIKitSpacing(it) }
-            ?: UIKitTheme.spacing.spacing12
-
+fun RowCardMenuHandler(modifier: Modifier = Modifier, gridComponent: GridComponent) {
     val scrollState = rememberScrollState()
     val data = gridComponent.items
 
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = spacingVertical)
+            .padding(vertical = gridComponent.getSpacingVertical())
             .horizontalScroll(scrollState),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(spacingBetweenComponents)
+        horizontalArrangement = Arrangement.spacedBy(gridComponent.getSpacingBetweenComponents())
     ) {
-        Spacer(modifier = Modifier.width(spacingHorizontal))
+        Spacer(modifier = Modifier.width(gridComponent.getSpacingHorizontal()))
         data.forEach { cardComponent ->
-            cardComponent.content?.toProductModel()?.let { product ->
+            cardComponent.content?.toModel(ProductModel::class.java)?.let { product ->
                 UIKitProductItem(
                     imageUrl = product.imageUrl,
                     title = product.name,
@@ -50,6 +44,6 @@ fun BDUIRowCardMenu(modifier: Modifier = Modifier, gridComponent: GridComponent)
                 )
             }
         }
-        Spacer(modifier = Modifier.width(spacingHorizontal))
+        Spacer(modifier = Modifier.width(gridComponent.getSpacingHorizontal()))
     }
 }

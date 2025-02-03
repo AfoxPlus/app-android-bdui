@@ -1,6 +1,6 @@
 package com.afoxplus.bdui.data.sources.remote.api
 
-import com.afoxplus.bdui.data.sources.remote.model.response.ComponentResponse
+import com.afoxplus.bdui.data.sources.remote.model.response.ScreenResponse
 import com.afoxplus.network.annotations.ServiceClient
 import com.afoxplus.network.api.UrlProvider
 import com.afoxplus.network.response.BaseResponse
@@ -17,5 +17,5 @@ internal interface BDUIApiNetwork {
     }
 
     @GET("$PATH_BDUI/$PATH_ESTABLISHMENT_DETAIL/{code}")
-    suspend fun getEstablishmentDetail(@Path("code") establishmentCode: String): Response<BaseResponse<List<ComponentResponse>>>
+    suspend fun getEstablishmentDetail(@Path("code") establishmentCode: String): Response<BaseResponse<ScreenResponse>>
 }

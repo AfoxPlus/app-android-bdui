@@ -5,6 +5,7 @@ data class GridComponent(
     val gridType: ComponentGridType,
     val gridSize: Number,
     val items: List<CardComponent>,
+    override val id: String,
     override val name: String,
     override val type: ComponentType,
     override val spacingHorizontal: String? = null,
@@ -15,6 +16,7 @@ data class GridComponent(
     override val content: Map<String, Any>? = null,
     override val children: List<Component>? = null
 ) : Component(
+    id,
     name,
     type,
     spacingHorizontal,

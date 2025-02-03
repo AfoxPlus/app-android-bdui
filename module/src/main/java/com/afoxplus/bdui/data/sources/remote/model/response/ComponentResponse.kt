@@ -3,6 +3,7 @@ package com.afoxplus.bdui.data.sources.remote.model.response
 import com.google.gson.annotations.SerializedName
 
 internal data class ComponentResponse(
+    @SerializedName("id") val id: String,
     @SerializedName("name") val name: String,
     @SerializedName("type") val type: String,
     @SerializedName("spacingHorizontal") val spacingHorizontal: String? = null,
@@ -31,7 +32,14 @@ internal data class ComponentResponse(
     @SerializedName("borderStroke") val borderStroke: BorderStrokeResponse? = null,
     @SerializedName("shape") val shape: String? = null,
     @SerializedName("contentPadding") val paddingValues: PaddingValuesResponse? = null,
-    @SerializedName("state") val state: String? = null
+    @SerializedName("state") val state: String? = null,
+    @SerializedName("action") val action: String? = null,
+
+    //Text
+    @SerializedName("colorExpandableText") val colorExpandableText: String? = null,
+    @SerializedName("typographyTokenExpandableText") val typographyTokenExpandableText: String? = null,
+    @SerializedName("maxLines") val maxLines: Number? = null,
+    @SerializedName("textAlign") val textAlign: String? = null
 )
 
 internal data class BorderStrokeResponse(

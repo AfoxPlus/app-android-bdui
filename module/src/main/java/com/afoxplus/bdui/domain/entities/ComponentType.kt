@@ -5,5 +5,6 @@ enum class ComponentType {
     GRID,
     CARD,
     BUTTON,
+    TEXT,
     EMPTY
 }

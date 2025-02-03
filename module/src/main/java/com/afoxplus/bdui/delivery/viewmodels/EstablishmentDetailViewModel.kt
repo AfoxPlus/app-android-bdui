@@ -2,7 +2,7 @@ package com.afoxplus.bdui.delivery.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.afoxplus.bdui.domain.entities.Component
+import com.afoxplus.bdui.domain.entities.Screen
 import com.afoxplus.bdui.domain.usecases.GetEstablishmentDetail
 import com.afoxplus.uikit.common.ResultState
 import com.afoxplus.uikit.common.UIState
@@ -20,7 +20,7 @@ internal class EstablishmentDetailViewModel @Inject constructor(
     private val dispatcher: UIKitCoroutineDispatcher
 ) : ViewModel() {
 
-    private val mComponentsState = MutableStateFlow<UIState<List<Component>>>(UIState.OnLoading())
+    private val mComponentsState = MutableStateFlow<UIState<Screen>>(UIState.OnLoading())
     val componentsState = mComponentsState.asStateFlow()
 
     fun callGetEstablishmentDetail(establishmentCode: String) {

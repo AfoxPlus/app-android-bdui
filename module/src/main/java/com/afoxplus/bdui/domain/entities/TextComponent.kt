@@ -1,6 +1,11 @@
 package com.afoxplus.bdui.domain.entities
 
-data class EmptyComponent(
+
+data class TextComponent(
+    val colorExpandableText: String?,
+    val typographyTokenExpandableText: String?,
+    val maxLines: Number? = 1,
+    val textAlign: String? = null,
     override val id: String,
     override val name: String,
     override val type: ComponentType,

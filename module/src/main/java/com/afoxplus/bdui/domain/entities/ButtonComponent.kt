@@ -7,6 +7,8 @@ data class ButtonComponent(
     val shape: String? = null,
     val paddingValues: PaddingValues? = null,
     val state: String? = null,
+    val action: String? = null,
+    override val id: String,
     override val name: String,
     override val type: ComponentType,
     override val spacingHorizontal: String? = null,
@@ -17,6 +19,7 @@ data class ButtonComponent(
     override val content: Map<String, Any>? = null,
     override val children: List<Component>? = null
 ) : Component(
+    id,
     name,
     type,
     spacingHorizontal,

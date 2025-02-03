@@ -1,6 +1,7 @@
 package com.afoxplus.bdui.domain.entities
 
 sealed class Component(
+    open val id: String,
     open val name: String,
     open val type: ComponentType,
     open val spacingHorizontal: String?,
