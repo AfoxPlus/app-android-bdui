@@ -21,8 +21,8 @@ fun TopEstablishmentHandler(cardComponent: CardComponent) {
                 imagePortrait = establishment.urlLogo,
                 name = establishment.name,
                 description = establishment.primaryType,
-                hasSubscription = false,
-                isOpen = true,
+                hasSubscription = establishment.hasSubscription,
+                isOpen = establishment.isOpen,
                 rating = establishment.rating,
                 addressDescription = "",
                 phoneDescription = ""

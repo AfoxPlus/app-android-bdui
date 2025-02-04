@@ -11,7 +11,7 @@ import com.afoxplus.uikit.designsystem.atoms.UIKitButton
 import com.afoxplus.uikit.designsystem.atoms.UIKitButtonType
 
 @Composable
-fun BDUIButton(buttonComponent: ButtonComponent) {
+fun BDUIButton(buttonComponent: ButtonComponent, onClick: (deeplink: String) -> Unit) {
     val title = buttonComponent.content?.get("title").toString()
     val uiKitButtonType = when (buttonComponent.style) {
         "FilledLarge" -> UIKitButtonType.FilledLarge()
@@ -29,6 +29,7 @@ fun BDUIButton(buttonComponent: ButtonComponent) {
             .padding(
                 horizontal = buttonComponent.getSpacingHorizontal(),
                 vertical = buttonComponent.getSpacingVertical()
-            ), type = uiKitButtonType, text = title
-    ) { }
+            ), type = uiKitButtonType, text = title,
+        onClick = { onClick(buttonComponent.deeplink.orEmpty()) }
+    )
 }

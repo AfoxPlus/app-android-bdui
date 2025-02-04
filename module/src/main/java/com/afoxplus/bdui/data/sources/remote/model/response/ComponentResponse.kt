@@ -13,6 +13,8 @@ internal data class ComponentResponse(
     @SerializedName("typographyToken") val typographyToken: String? = null,
     @SerializedName("content") val content: Map<String, Any>? = null,
     @SerializedName("children") val children: List<ComponentResponse>? = null,
+    @SerializedName("deeplink") val deeplink: String? = null,
+
     //Grid
     @SerializedName("spacingBetweenComponents") val spacingBetweenComponents: String? = null,
     @SerializedName("gridType") val gridType: String? = null,
@@ -33,7 +35,6 @@ internal data class ComponentResponse(
     @SerializedName("shape") val shape: String? = null,
     @SerializedName("contentPadding") val paddingValues: PaddingValuesResponse? = null,
     @SerializedName("state") val state: String? = null,
-    @SerializedName("action") val action: String? = null,
 
     //Text
     @SerializedName("colorExpandableText") val colorExpandableText: String? = null,

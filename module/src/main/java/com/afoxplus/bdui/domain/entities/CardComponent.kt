@@ -4,6 +4,7 @@ data class CardComponent(
     val elevation: String,
     val border: String,
     val stroke: String,
+    val deeplink: String,
     override val id: String,
     override val name: String,
     override val type: ComponentType,

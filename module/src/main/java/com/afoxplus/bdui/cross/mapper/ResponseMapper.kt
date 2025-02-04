@@ -54,6 +54,7 @@ internal fun ComponentResponse.toButtonComponent(): ButtonComponent {
         colorToken = this.colorToken,
         typographyToken = this.typographyToken,
         content = this.content,
+        deeplink = this.deeplink.orEmpty(),
         children = this.children?.map { it.toComponent() }
     )
 }
@@ -62,9 +63,9 @@ internal fun ComponentResponse.toIconComponent(): IconComponent {
     return IconComponent(
         id = this.id,
         name = this.name,
-        iconToken = this.iconToken ?: "",
-        size = this.size ?: "",
-        hintToken = this.hintToken ?: "",
+        iconToken = this.iconToken.orEmpty(),
+        size = this.size.orEmpty(),
+        hintToken = this.hintToken.orEmpty(),
         type = ComponentType.ICON,
         spacingHorizontal = this.spacingHorizontal,
         spacingVertical = this.spacingVertical,
@@ -78,9 +79,9 @@ internal fun ComponentResponse.toIconComponent(): IconComponent {
 
 internal fun ComponentResponse.toCardComponent(): CardComponent {
     return CardComponent(
-        elevation = this.elevation ?: "",
-        border = this.border ?: "",
-        stroke = this.stroke ?: "",
+        elevation = this.elevation.orEmpty(),
+        border = this.border.orEmpty(),
+        stroke = this.stroke.orEmpty(),
         type = ComponentType.CARD,
         id = this.id,
         name = this.name,
@@ -90,6 +91,7 @@ internal fun ComponentResponse.toCardComponent(): CardComponent {
         colorToken = this.colorToken,
         typographyToken = this.typographyToken,
         content = this.content,
+        deeplink = this.deeplink.orEmpty(),
         children = this.children?.map { it.toComponent() }
     )
 }

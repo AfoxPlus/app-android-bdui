@@ -7,7 +7,7 @@ data class ButtonComponent(
     val shape: String? = null,
     val paddingValues: PaddingValues? = null,
     val state: String? = null,
-    val action: String? = null,
+    val deeplink: String,
     override val id: String,
     override val name: String,
     override val type: ComponentType,

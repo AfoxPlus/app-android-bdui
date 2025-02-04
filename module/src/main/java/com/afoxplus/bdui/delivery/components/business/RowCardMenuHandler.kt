@@ -20,7 +20,11 @@ import com.afoxplus.bdui.domain.entities.GridComponent
 import com.afoxplus.uikit.designsystem.businesscomponents.UIKitProductItem
 
 @Composable
-fun RowCardMenuHandler(modifier: Modifier = Modifier, gridComponent: GridComponent) {
+fun RowCardMenuHandler(
+    modifier: Modifier = Modifier,
+    gridComponent: GridComponent,
+    onClick: (deeplink: String) -> Unit
+) {
     val scrollState = rememberScrollState()
     val data = gridComponent.items
 
@@ -40,7 +44,7 @@ fun RowCardMenuHandler(modifier: Modifier = Modifier, gridComponent: GridCompone
                     title = product.name,
                     description = product.description,
                     price = product.getPriceFormat(),
-                    onClick = {}
+                    onClick = { onClick(cardComponent.deeplink) }
                 )
             }
         }

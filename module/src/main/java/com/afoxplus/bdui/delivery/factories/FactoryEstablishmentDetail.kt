@@ -16,11 +16,22 @@ import com.afoxplus.bdui.domain.entities.TextComponent
 import com.afoxplus.uikit.designsystem.atoms.UIKitText
 
 @Composable
-fun BDUIFactoryEstablishmentDetail(component: Component) {
+fun FactoryEstablishmentDetail(
+    component: Component,
+    onClick: (deeplink: String) -> Unit
+) {
     when (component.name) {
         "SECTION" -> BDUISectionTitle(cardComponent = component as CardComponent)
-        "ROW_CARD_MENU" -> RowCardMenuHandler(gridComponent = component as GridComponent)
-        "SEE_MORE_BUTTON" -> BDUIButton(buttonComponent = component as ButtonComponent)
+        "ROW_CARD_MENU" -> RowCardMenuHandler(
+            gridComponent = component as GridComponent,
+            onClick = onClick
+        )
+
+        "SEE_MORE_BUTTON" -> BDUIButton(
+            buttonComponent = component as ButtonComponent,
+            onClick = onClick
+        )
+
         "EXPANDABLE_TEXT", "TEXT" -> BDUIExpandableText(textComponent = component as TextComponent)
         "GRID_PHOTOS" -> BDUIGridPhotos(gridComponent = component as GridComponent)
         "ROW_ICON_TEXT" -> RowIconTextHandler(gridComponent = component as GridComponent)
@@ -29,7 +40,7 @@ fun BDUIFactoryEstablishmentDetail(component: Component) {
 }
 
 @Composable
-fun BDUIFactoryBar(component: Component) {
+fun FactoryBar(component: Component) {
     when (component.name) {
         "TOP_ESTABLISHMENT_DETAIL" -> TopEstablishmentHandler(cardComponent = component as CardComponent)
         else -> UIKitText(text = component.name)

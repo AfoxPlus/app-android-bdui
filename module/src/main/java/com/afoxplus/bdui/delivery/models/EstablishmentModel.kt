@@ -10,4 +10,6 @@ internal data class EstablishmentModel(
     @SerializedName("establishmentRating") val rating: Float,
     @SerializedName("establishmentUserRatingCount") val ratingCount: Long,
     @SerializedName("establishmentIsVerified") val isVerified: Boolean,
+    @SerializedName("establishmentIsOpen") val isOpen: Boolean,
+    @SerializedName("establishmenthasSubscription") val hasSubscription: Boolean
 )

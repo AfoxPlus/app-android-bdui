@@ -2,8 +2,10 @@ package com.afoxplus.bdui.delivery.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.afoxplus.bdui.delivery.events.OnClickDeeplinkEvent
 import com.afoxplus.bdui.domain.entities.Screen
 import com.afoxplus.bdui.domain.usecases.GetEstablishmentDetail
+import com.afoxplus.uikit.bus.UIKitEventBusWrapper
 import com.afoxplus.uikit.common.ResultState
 import com.afoxplus.uikit.common.UIState
 import com.afoxplus.uikit.di.UIKitCoroutineDispatcher
@@ -17,6 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 internal class EstablishmentDetailViewModel @Inject constructor(
     private val getEstablishmentDetail: GetEstablishmentDetail,
+    private val eventBusWrapper: UIKitEventBusWrapper,
     private val dispatcher: UIKitCoroutineDispatcher
 ) : ViewModel() {
 
@@ -34,6 +37,12 @@ internal class EstablishmentDetailViewModel @Inject constructor(
                     mComponentsState.value = UIState.OnError(UIException(ERROR_GET_ESTABLISHMENT))
                 }
             }
+        }
+    }
+
+    fun sendDeeplinkEvent(deeplink: String) {
+        viewModelScope.launch(dispatcher.getMainDispatcher()) {
+            eventBusWrapper.send(OnClickDeeplinkEvent(deeplink = deeplink))
         }
     }
 
