@@ -15,7 +15,9 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
         setContent {
             UIKitTheme {
-                EstablishmentDetailScreen(establishmentCode = "671885a91cfe6b6e8339ea70")
+                EstablishmentDetailScreen(
+                    establishmentCode = "671885a91cfe6b6e8339ea70",
+                    onBack = { onBackPressedDispatcher.onBackPressed() })
             }
         }
     }

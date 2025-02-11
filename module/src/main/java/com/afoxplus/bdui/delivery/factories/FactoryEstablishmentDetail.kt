@@ -40,9 +40,13 @@ fun FactoryEstablishmentDetail(
 }
 
 @Composable
-fun FactoryBar(component: Component) {
+fun FactoryTopBar(component: Component, onBack: () -> Unit) {
     when (component.name) {
-        "TOP_ESTABLISHMENT_DETAIL" -> TopEstablishmentHandler(cardComponent = component as CardComponent)
+        "TOP_ESTABLISHMENT_DETAIL" -> TopEstablishmentHandler(
+            cardComponent = component as CardComponent,
+            onBack = onBack
+        )
+
         else -> UIKitText(text = component.name)
     }
 }
