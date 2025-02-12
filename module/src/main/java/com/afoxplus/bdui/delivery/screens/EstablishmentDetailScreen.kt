@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -67,11 +68,8 @@ private fun HandleEstablishmentDetail(
                 .padding(paddingValues)
                 .fillMaxSize()
         ) {
-            items(
-                count = screen.content.size,
-                key = { screen.content[it].id }
-            ) {
-                FactoryEstablishmentDetail(screen.content[it], onClick = onClick)
+            itemsIndexed(items = screen.content, key = { _, item -> item.id }) { _, component ->
+                FactoryEstablishmentDetail(component, onClick = onClick)
             }
         }
     }

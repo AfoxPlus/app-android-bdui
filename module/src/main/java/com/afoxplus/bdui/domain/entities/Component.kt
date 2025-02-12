@@ -1,5 +1,8 @@
 package com.afoxplus.bdui.domain.entities
 
+import androidx.compose.runtime.Immutable
+
+@Immutable
 sealed class Component(
     open val id: String,
     open val name: String,

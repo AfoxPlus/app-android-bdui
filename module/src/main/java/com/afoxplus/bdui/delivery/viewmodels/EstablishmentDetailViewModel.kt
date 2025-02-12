@@ -2,9 +2,9 @@ package com.afoxplus.bdui.delivery.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.afoxplus.bdui.delivery.events.OnClickDeeplinkEvent
 import com.afoxplus.bdui.domain.entities.Screen
 import com.afoxplus.bdui.domain.usecases.GetEstablishmentDetail
+import com.afoxplus.uikit.bus.OnClickDeeplinkEvent
 import com.afoxplus.uikit.bus.UIKitEventBusWrapper
 import com.afoxplus.uikit.common.ResultState
 import com.afoxplus.uikit.common.UIState
