@@ -29,6 +29,7 @@ fun TopEstablishmentHandler(cardComponent: CardComponent, onBack: () -> Unit) {
                 shape = UIKitTheme.shapes.default,
                 elevation = CardDefaults.cardElevation(defaultElevation = UIKitTheme.spacing.spacing00),
                 establishment = Establishment(
+                    primaryType = establishment.primaryType,
                     imageLandscape = establishment.urlBanner,
                     imagePortrait = establishment.urlLogo,
                     name = establishment.name,
